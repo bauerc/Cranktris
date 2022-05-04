@@ -26,8 +26,9 @@ function Board:init()
         {0 ,0 ,0 ,0, 0 ,0 ,0, 0, 0, 0},
         {0 ,0 ,0 ,0, 0 ,0 ,0, 0, 0, 0},
         {0 ,0 ,0 ,0, 0 ,0 ,0, 0, 0, 0},
-        {1 ,1 ,0 ,0, 0 ,0 ,0, 0, 0, 0},
+        {0 ,0 ,0 ,0, 0 ,0 ,0, 0, 0, 0},
     }
+    self.drawCells = true
     self.image = nil
     self.blockImageTable = gfx.imagetable.new("images/blocksprites")
     self.blockImages = {}
@@ -35,8 +36,6 @@ function Board:init()
 		self.blockImages[i] = self.blockImageTable[i]
 	end
 end
-
-
 
 function Board:drawImage()
 	local boardImage = gfx.image.new(110, 220)
@@ -50,7 +49,9 @@ function Board:drawImage()
 					local fillImage = self.blockImages[fill]
 					fillImage:draw((x-1) * xOffset+1, (y-1) * yOffset+1)
 				end
-				gfx.drawRoundRect((x-1) * xOffset, (y-1) * yOffset, 10, 10, 1)
+                if (self.drawCells) then
+                    gfx.drawRoundRect((x-1) * xOffset, (y-1) * yOffset, 10, 10, 1)
+                end
 			end
 		end
 	gfx.popContext()
