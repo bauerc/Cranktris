@@ -34,17 +34,9 @@ function Board:init()
     for i = 1,#self.blockImageTable do
 		self.blockImages[i] = self.blockImageTable[i]
 	end
-
-    gfx.sprite.setBackgroundDrawingCallback(
-		function(x,y,width,height)
-			gfx.setClipRect( x, y, width, height )
-            self:drawImage()
-			self.image:draw(145,10)
-			gfx.clearClipRect()
-		end
-	)
-    self:add()
 end
+
+
 
 function Board:drawImage()
 	local boardImage = gfx.image.new(110, 220)
@@ -65,24 +57,3 @@ function Board:drawImage()
     self.image = boardImage
 end
 
-function Board:update()
-
-    if pd.buttonJustPressed(pd.kButtonUp) then
-        self:changeRandomCell()
-        gfx.sprite.redrawBackground()
-    end
-
-end
-
-
-function Board:changeRandomCell()
-    local y = math.random(#self.state)
-    local x = math.random(#self.state[y])
-    local fill = math.random(#self.blockImages)
-    self.state[y][x] = fill
-
-    print(y)
-    print(x)
-    print(fill)
-    print(self.state[y][x])
-end
