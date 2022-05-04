@@ -35,6 +35,6 @@ function PlayBoard:insertPiece()
 end
 
 function PlayBoard:update()
-    self:drawImage()
-    self:setImage(self.image)
+    -- self:drawImage()
+    -- self:setImage(self.image)
 end
